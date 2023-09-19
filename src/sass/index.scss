@@ -1,0 +1,12 @@
+@import './common';
+@import './example';
+.search-form {
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0;}
