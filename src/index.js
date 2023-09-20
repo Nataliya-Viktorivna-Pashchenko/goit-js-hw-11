@@ -1,15 +1,14 @@
-import axios from 'axios';
 import { Notify } from "notiflix";
 import "notiflix/dist/notiflix-3.2.6.min.css";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
+import { fetchImgs } from "./js/img_api";
 // import InfiniteScroll from 'infinite-scroll';
 
-const BASE_URL = `https://pixabay.com/api/`;
-const API_KEY = '39494389-0cbffb7df999a91ec2d35df03';
 
-searchForm = document.querySelector('.search-form');
-gallery = document.querySelector('.gallery');
+
+const searchForm = document.querySelector('.search-form');
+const gallery = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
 loadMoreBtn.style.display = 'none';
 
@@ -20,30 +19,6 @@ searchForm.addEventListener('submit', onSubmit);
 loadMoreBtn.addEventListener('click', onLoadClick);
 
 const lightbox = new SimpleLightbox('.gallery a');
-
-
-
-async function fetchImgs(query, page) {
-  const params = {
-    key: API_KEY,
-    q: query, 
-    image_type: 'photo',
-    orientation: 'horizontal',
-      safesearch: true,
-      page,
-      per_page: 40,
-      
-  };
-
-  try {
-      const { data } = await axios(BASE_URL, { params });
-      return data;
-      
-  } catch (error) {
-    console.log(error);
-  }
-}
-
         
 function creatGallery(arr, container) {
   const markupImg = arr.map(({
